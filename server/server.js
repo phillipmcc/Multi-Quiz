@@ -12,7 +12,7 @@ const { makeid } = require('./utils');
 const state = {};
 const clientRooms = {};
 
-server.listen(3000, () => {
+server.listen(process.env.PORT || 3000, () => {
   console.log("Server running...");
 });
 
