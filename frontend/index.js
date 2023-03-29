@@ -72,6 +72,14 @@ let code = ""
 let playercode =""
 let CorrectAnswerPos = 0 
 let PlayerName = ""
+gamePlayer1Display.style.display = 'none';
+gamePlayer2Display.style.display = 'none';
+gamePlayer3Display.style.display = 'none';
+gamePlayer4Display.style.display = 'none';
+score1.style.display = 'none';
+score2.style.display = 'none';
+score3.style.display = 'none';
+score4.style.display = 'none';
 newGameBtn.addEventListener('click', newGame);
 joinGameBtn.addEventListener('click', joinGame);
 playeranswer1Btn.addEventListener('click', answered1);
@@ -93,20 +101,28 @@ function assignName(playerName, PlayerCode){
        gamePlayer1Display.innerText = newname; 
        playerNumber1 = PlayerCode;
        socket.emit('PlayerOneCode', PlayerCode, playerDisplayCode);
+       gamePlayer1Display.style.display = 'block';
+       score1.style.display = 'block';
     } else if (gamePlayer2Display.innerText == 'Player 2 :'){
           const newname = playerName + ' : ';
           gamePlayer2Display.innerText = newname; 
           playerNumber2 = PlayerCode;
+          gamePlayer2Display.style.display = 'block';
+          score2.style.display = 'block';
           socket.emit('PlayerTwoCode', PlayerCode, playerDisplayCode);
     } else if (gamePlayer3Display.innerText == 'Player 3 :'){
           const newname = playerName + ' : ';
           gamePlayer3Display.innerText = newname;
           playerNumber3 = PlayerCode;
+          gamePlayer3Display.style.display = 'block';
+          score3.style.display = 'block';
           socket.emit('PlayerThreeCode', PlayerCode, playerDisplayCode);
     } else if (gamePlayer3Display.innerText == 'Player 4 :'){
           const newname = playerName + ' : ';
           gamePlayer4Display.innerText = newname; 
           playerNumber4 = PlayerCode;
+          gamePlayer4Display.style.display = 'block';
+          score4.style.display = 'block';
           socket.emit('PlayerFourCode', PlayerCode, playerDisplayCode);
     }
  }
@@ -346,6 +362,7 @@ function updateTimer(){
   time--
 
   if (time <= 0 && playerNumber === 1){
+    count.style.display = 'none';
     code = gameCodeDisplay.innerText;
     socket.emit('newScreen', code)
     score1.innerHTML = scorep1
@@ -357,6 +374,7 @@ function updateTimer(){
     answertime--
     
     if(answertime <= 0 && playerNumber === 1){
+      count.style.display = 'block';
       time = 30
       answertime = 5
       if(questionCount != 4){ 
