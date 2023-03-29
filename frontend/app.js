@@ -1,4 +1,4 @@
-const socket = io();
+const socket = io('192.168.246.1');
 
 socket.on('init', handleInit);
 socket.on('gameState', handleGameState);
