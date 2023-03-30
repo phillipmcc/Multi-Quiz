@@ -1,4 +1,4 @@
-const socket = io('athttps://shielded-anchorage-34756.herokuapp.com/');
+const socket = io('https://shielded-anchorage-34756.herokuapp.com/');
 
 socket.on('init', handleInit);
 socket.on('gameState', handleGameState);
