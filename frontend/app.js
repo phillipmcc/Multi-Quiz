@@ -1,4 +1,4 @@
-const socket = io('192.168.246.1');
+const socket = io('https://damp-ocean-83596.herokuapp.com/');
 
 socket.on('init', handleInit);
 socket.on('gameState', handleGameState);
