@@ -11,8 +11,8 @@ const { makeid } = require('./utils');
 
 const state = {};
 const clientRooms = {};
-
-server.listen(3000, () => {
+const INDEX = '/game2.html';
+server.listen(process.env.PORT || 3000, () => {
   console.log("Server running...");
 });
 
