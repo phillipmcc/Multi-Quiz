@@ -278,7 +278,7 @@ function init() {
   playerScreen.style.display = "none";
   waitscreen.style.display = "none";
   gameActive = true;
-  time = 5;
+  time = 60;
   
 }
 
