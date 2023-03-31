@@ -57,7 +57,7 @@ let playerNumber2 = -1;
 let playerNumber3 = -1;
 let playerNumber4 = -1;
 let time = startTime;
-let answertime = 60;
+let answertime = 20;
 let scorep1 = 0;
 let scorep2 = 0;
 let scorep3 = 0;
@@ -376,7 +376,7 @@ function updateTimer(){
     if(answertime <= 0 && playerNumber === 1){
       count.style.display = 'block';
       time = 30
-      answertime = 15
+      answertime = 5
       if(questionCount != 4){ 
         if (questionCount != 5){ 
           newQuestion()
