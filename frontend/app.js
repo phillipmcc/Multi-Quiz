@@ -376,7 +376,7 @@ function updateTimer(){
     if(answertime <= 0 && playerNumber === 1){
       count.style.display = 'block';
       time = 30
-      answertime = 5
+      answertime = 15
       if(questionCount != 4){ 
         if (questionCount != 5){ 
           newQuestion()
