@@ -1,4 +1,4 @@
-const socket = io('https://shielded-anchorage-34756.herokuapp.com/');
+const socket = io('http://localhost:3000');
 
 socket.on('init', handleInit);
 socket.on('gameState', handleGameState);
@@ -18,6 +18,7 @@ socket.on('assignPlayerOne', assignPlayer1);
 socket.on('assignPlayerTwo', assignPlayer2);
 socket.on('assignPlayerThree', assignPlayer3);
 socket.on('assignPlayerFour', assignPlayer4);
+socket.on('reset', playerReset);
 let canvas, ctx;
 let playerNumber;
 let gameActive = false;
@@ -403,16 +404,20 @@ function updateTimer(){
         }
         if (highscorePos == 0){
           alert(gamePlayer1Display.innerText + " Has won the Game");
+          socket.emit('reset', code);
           reset();
         } else if (highscorePos == 1){
             alert(gamePlayer2Display.innerText + " Has won the Game");
+            socket.emit('reset', code);
             reset();
         } else if (highscorePos == 2){
-          alert(gamePlayer3Display.innerText + " Has won the Game");
-          reset();
+            alert(gamePlayer3Display.innerText + " Has won the Game");
+            socket.emit('reset', code);
+            reset();
         } else if (highscorePos == 3){
-          alert(gamePlaye4Display.innerText + " Has won the Game");
-          reset();
+            alert(gamePlaye4Display.innerText + " Has won the Game");
+            socket.emit('reset', code);
+            reset();
         } 
     }
     }
@@ -540,6 +545,31 @@ function reset() {
   gameScreen.style.display = "none";
   playerScreen.style.display = "none";
   waitscreen.style.display = "none";
+  gamePlayer1Display.style.display = 'none';
+  gamePlayer2Display.style.display = 'none';
+  gamePlayer3Display.style.display = 'none';
+  gamePlayer4Display.style.display = 'none';
+  score1.style.display = 'none';
+  score2.style.display = 'none';
+  score3.style.display = 'none';
+  score4.style.display = 'none';
+  playerNumber1 = -1;
+  playerNumber2 = -1;
+  playerNumber3 = -1;
+  playerNumber4 = -1;
+  answertime = 5;
+  scorep1 = 0;
+  scorep2 = 0;
+  scorep3 = 0;
+  scorep4 = 0;
+  ans = "";
+  pos = -1;
+  questionCount = 0;
+  gamePlayer1Display.innerText = 'Player 1 :';
+  gamePlayer2Display.innerText = 'Player 2 :';
+  gamePlayer3Display.innerText = 'Player 3 :';
+  gamePlayer4Display.innerText = 'Player 4 :';
+  gameActive = false;
 }
 function HandleCorrectAnswer(){
   socket.emit('answer');
@@ -614,4 +644,6 @@ function assignPlayer4(playernum){
   playerNumber4 = playernum;
 }
 
-
+function playerReset(){
+  reset();
+}
