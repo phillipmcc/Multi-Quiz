@@ -11,7 +11,7 @@ const { makeid } = require('./utils');
 
 const state = {};
 const clientRooms = {};
-
+const INDEX = '/game2.html';
 server.listen(process.env.PORT || 3000, () => {
   console.log("Server running...");
 });
@@ -33,6 +33,11 @@ io.on('connection', client => {
   client.on('PlayerTwoCode', PlayerTwoCode);
   client.on('PlayerThreeCode', PlayerThreeCode);
   client.on('PlayerFourCode', PlayerFourCode);
+  client.on('reset', playerReset);
+  function playerReset(code){
+    io.sockets.in(code)
+    .emit('reset'); 
+  }
   function PlayerOneCode(playercode, roomname){
     io.sockets.in(roomname)
     .emit('assignPlayerOne', playercode); 
